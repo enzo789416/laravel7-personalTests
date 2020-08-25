@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/ok', function(){
+    return ['status' => true];
+});
+
+Route::namespace('API')->group(function(){
+    Route::resource('/products', 'ProductsController', ['except' => ['create']]);
+    //Route::get('products/{id}', 'ProductsController@show')->name('products.show');
+});
